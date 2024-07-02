@@ -1,0 +1,52 @@
+input, button {
+    margin-top: 5px !important;
+    margin-bottom: 5px !important;
+}
+
+.imglogin {
+    width: 100%;
+}
+
+.fotouser {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.conteudo {
+    display: flex;
+    flex-wrap: wrap;
+}
+ 
+.card {
+    margin: 10px;
+}
+
+img {
+    width: 283px;
+    height: 425px;
+}
+
+#precoBook {
+    text-decoration: line-through;
+}
+
+.precoatual {
+    font-size: 1.5em;
+}
+
+.borda {
+    border: none;
+}
+
+#texto {
+    font-size: 1.2em;
+    text-align: justify;
+}
+
+#detalheFoto {
+    margin-top: 20px;
+    border-radius: 10px;
+}
