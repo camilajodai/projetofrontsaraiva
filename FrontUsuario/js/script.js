@@ -87,7 +87,7 @@ function detalhes() {
     .then((dados) => {
       dados.payload.map((rs) => {
 
-        document.querySelector("h2").innerHTML = "Detalhes do livro: "+ rs.nometitulo
+        document.querySelector("h2").innerHTML = "Detalhes do livro: " + rs.nometitulo
 
         let card = `<div class="card mb-3 col-md-12 borda">
                 <div class="row g-0">
@@ -199,4 +199,40 @@ function buscar() {
 
     })
     .catch((error) => console.log(`erro na api ${error}`))
+}
+
+function carregarCarrinho() {
+
+  const conteudo = document.querySelector(".conteudo")
+
+  fetch("http://127.0.0.1:4002/api/v1/carrinho/listar/" + 1)
+    .then((res) => res.json())
+    .then((dados) => {
+      dados.payload.map((rs) => {
+        `<div class="card mb-3">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <img src="${rs.foto1}" class="img-fluid rounded-start" alt="Livro">
+    </div>
+    <div class="col-md-8">
+    <div class="card-body">
+      <h2 class="card-title">${rs.nometitulo}</h2>
+      <h5 class="card-title">Autor: ${rs.autor}</h5>
+      <p class="card-text" id="texto">${rs.sinopse}</p>
+      <p class="card-text" id="precoBook">De R$ ${rs.precoatual}</p>
+      <p class="card-text precoatual">Por R$ ${rs.total}</p>
+      <a href=carrinho.html?idlivro=${rs.idtitulo}>
+      <img src=img/cart.png class="cartPhoto"> Adicionar no carrinho </a>
+    </div>
+  </div>
+  </div>
+</div>`
+
+
+        conteudo.innerHTML += card
+      })
+
+    })
+    .catch((error) => console.log(`erro na api ${error}`))
+
 }
