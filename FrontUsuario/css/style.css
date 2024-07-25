@@ -59,3 +59,17 @@ img {
 .containerCarrinho {
     display: flex;
 }
+
+.form-group {
+    display: flex;
+    align-items: center;
+}
+
+.form-label {
+    margin-right: 10px;
+    font-size: 1.2em;
+}
+
+.form-select {
+    flex: 1;
+}

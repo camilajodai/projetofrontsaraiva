@@ -220,13 +220,16 @@ function carregarCarrinho() {
       <h5 class="card-title">Autor: ${rs.autor}</h5>
       <h5 class="card-title">R$ ${rs.total}</h5>
       <hr>
+      <div class="form-group">
+      <label class="form-label">Qtd:</label>
       <select class="form-select" style="max-width: 130px" aria-label="Default select example">
-              <option selected value="${rs.quantidade}">Qtd: ${rs.quantidade}</option>
-              <option value="2">Qtd: 2</option>
-              <option value="3">Qtd: 3</option>
-              <option value="4">Qtd: 4</option>
-              <option value="5">Qtd: 5</option>
+              <option selected value="${rs.quantidade}">${rs.quantidade}</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
               </select>
+              </div>
               <br>
       <p class="card-text precoatual">Subtotal (1 produto): <strong> R$ ${rs.total}</strong></p>
 
