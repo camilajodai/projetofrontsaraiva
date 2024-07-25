@@ -209,7 +209,7 @@ function carregarCarrinho() {
     .then((res) => res.json())
     .then((dados) => {
       dados.payload.map((rs) => {
-        `<div class="card mb-3">
+        let card = `<div class="card mb-3">
   <div class="row g-0">
     <div class="col-md-4">
       <img src="${rs.foto1}" class="img-fluid rounded-start" alt="Livro">
@@ -218,21 +218,51 @@ function carregarCarrinho() {
     <div class="card-body">
       <h2 class="card-title">${rs.nometitulo}</h2>
       <h5 class="card-title">Autor: ${rs.autor}</h5>
-      <p class="card-text" id="texto">${rs.sinopse}</p>
-      <p class="card-text" id="precoBook">De R$ ${rs.precoatual}</p>
-      <p class="card-text precoatual">Por R$ ${rs.total}</p>
-      <a href=carrinho.html?idlivro=${rs.idtitulo}>
-      <img src=img/cart.png class="cartPhoto"> Adicionar no carrinho </a>
+      <h5 class="card-title">R$ ${rs.total}</h5>
+      <hr>
+      <select class="form-select" style="max-width: 130px" aria-label="Default select example">
+              <option selected value="${rs.quantidade}">Qtd: ${rs.quantidade}</option>
+              <option value="2">Qtd: 2</option>
+              <option value="3">Qtd: 3</option>
+              <option value="4">Qtd: 4</option>
+              <option value="5">Qtd: 5</option>
+              </select>
+              <br>
+      <p class="card-text precoatual">Subtotal (1 produto): <strong> R$ ${rs.total}</strong></p>
+
     </div>
   </div>
   </div>
 </div>`
 
-
         conteudo.innerHTML += card
       })
 
     })
-    .catch((error) => console.log(`erro na api ${error}`))
+    .catch((error) => {
+      console.log(`erro na api ${error}`)
+    })
 
+  Cart()
+}
+
+
+function Cart() {
+  const conteudo = document.querySelector(".subtotal")
+
+  fetch("http://127.0.0.1:4002/api/v1/carrinho/pagar/" + 1)
+    .then((res) => res.json())
+    .then((dados) => {
+      dados.payload.map((rs) => {
+        let cardTotal = `<div class="card text-center mb-3" style="width: 18rem;">
+        <div class="card-body">
+          <p class="card-text">Subtotal (1 produtos): R$ ${rs.subtotal}</p>
+          <a href="#" class="btn btn-warning">Fechar pedido</a>
+        </div>
+      </div>`
+
+        conteudo.innerHTML = cardTotal
+      })
+    })
+    .catch((error) => console.log(`erro na api ${error}`))
 }
